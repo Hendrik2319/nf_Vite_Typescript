@@ -78,5 +78,20 @@ if (!isAdmin)
     console.log('isAdmin ist "false".');
 
 function writeXmasTree( n: number ) {
-
+    let str: string = '';
+    for ( let i: number = 1; i<=n; i++ ) {
+        str += " ".repeat(n-i);
+        str += "*".repeat(i*2-1);
+        str += " ".repeat(n-i);
+        str += '\r\n';
+    }
+    for ( let i: number = 1; i<=n; i++ ) {
+        str += " ".repeat(n-1);
+        str += "*";
+        str += " ".repeat(n-1);
+        str += '\r\n';
+    }
+    console.log(str);
 }
+
+writeXmasTree(7);
