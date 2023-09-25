@@ -77,7 +77,7 @@ if (isAdmin)
 if (!isAdmin)
     console.log('isAdmin ist "false".');
 
-function writeXmasTree( n: number ) {
+function writeXmasTree( n: number ): void {
     let str: string = '';
     for ( let i: number = 1; i<=n; i++ ) {
         str += " ".repeat(n-i);
