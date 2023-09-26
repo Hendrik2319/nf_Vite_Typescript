@@ -1,40 +1,50 @@
 
 type Grade = 1 | 2 | 3 | 4 | 5 | 6 | "A" | "B" | "C" | "D" | "E" | "F" | undefined
 
+type Course = {
+    name: string
+    grades: Grade[]
+}
+
 type Student = {
     name: string
     lastName: string
     age: number
-    certificate: Grade[]
+    certificate: Course[]
 }
 
 let studentList: Student[] = [
     {
-        name: "Anton",
-        lastName: "Meier",
-        age: 16,
-        certificate: [ 1,4,3,1,"A",undefined,1,2 ]
-    },
-    {
-        name: "Berta",
-        lastName: "Müller",
-        age: 17,
-        certificate: [ "A",undefined,1 ]
-    },
-    {
-        name: "Cäsar",
-        lastName: "Schmidt",
-        age: 17,
-        certificate: [ "A",1,undefined,3,2,4,5 ]
+        name: "Florian",
+        lastName: "Weber",
+        age: 14,
+        certificate: [
+            {
+                name: "Sport",
+                grades: ["A",1,undefined]
+            },
+            {
+                name: "Kunst",
+                grades: [3,2,4,5]
+            },
+            {
+                name: "Mathe",
+                grades: [1,2,"A"]
+            },
+        ]
     },
 ]
+
+function courseToString( course:Course ): string {
+    return course.name+": "+course.grades.map( n => n===undefined ? "*" : n ).join(",")
+}
 
 function printStudent( student:Student ): void {
     let line:String = student.name+" "+student.lastName+" ("+student.age+")"
     console.log(
         line+"\r\n"+
         "=".repeat(line.length)+"\r\n"+
-        "Noten: "+student.certificate.map( n => n===undefined ? "*" : n ).join(",")
+        "Noten:\r\n"+student.certificate.map( courseToString ).join("\r\n")
     )
 }
 
