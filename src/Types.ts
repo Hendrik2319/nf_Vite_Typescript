@@ -8,12 +8,26 @@ type Student = {
     certificate: Grade[]
 }
 
-let student1: Student = {
-    name: "Anton",
-    lastName: "Meier",
-    age: 17,
-    certificate: [ "A",2,undefined,3,1,"B",undefined,5 ]
-}
+let studentList: Student[] = [
+    {
+        name: "Anton",
+        lastName: "Meier",
+        age: 16,
+        certificate: [ 1,4,3,1,"A",undefined,1,2 ]
+    },
+    {
+        name: "Berta",
+        lastName: "Müller",
+        age: 17,
+        certificate: [ "A",undefined,1 ]
+    },
+    {
+        name: "Cäsar",
+        lastName: "Schmidt",
+        age: 17,
+        certificate: [ "A",1,undefined,3,2,4,5 ]
+    },
+]
 
 function printStudent( student:Student ): void {
     console.log(
@@ -23,4 +37,8 @@ function printStudent( student:Student ): void {
     )
 }
 
-printStudent(student1)
+function printStudents( students:Student[] ): void {
+    students.forEach( printStudent );
+}
+
+printStudents(studentList)
