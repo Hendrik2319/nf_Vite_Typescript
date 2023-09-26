@@ -30,9 +30,10 @@ let studentList: Student[] = [
 ]
 
 function printStudent( student:Student ): void {
+    let line:String = student.name+" "+student.lastName+" ("+student.age+")"
     console.log(
-        student.name+" "+student.lastName+" ("+student.age+")\r\n"+
-        "=".repeat(30)+"\r\n"+
+        line+"\r\n"+
+        "=".repeat(line.length)+"\r\n"+
         "Noten: "+student.certificate.map( n => n===undefined ? "*" : n ).join(",")
     )
 }
