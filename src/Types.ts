@@ -35,6 +35,47 @@ let studentList: Student[] = [
     },
 ]
 
+function getGradeValue( grade:Grade ): number {
+    if (typeof grade == "number")
+        return grade;
+    switch (grade) {
+        case "A": return 1;
+        case "B": return 2;
+        case "C": return 3;
+        case "D": return 4;
+        case "E": return 5;
+        case "F": return 6;
+    }
+    return 0;
+}
+
+function getCourseAverage( course:Course ): number {
+    let filteredGrades = course.grades
+        .filter(n => n !== undefined) // remove undefined grades
+    return filteredGrades
+        .map( getGradeValue )
+        .reduce( (n1,n2) => n1+n2, 0 )
+        / filteredGrades.length
+}
+
+function getStudentAverage( student:Student ): number {
+    let filteredAverages = student.certificate
+        .map(getCourseAverage)
+        .filter( n => n!==0) // remove every course with no grades or undefined grades only
+    return filteredAverages
+        .reduce( (n1,n2) => n1+n2, 0 )
+        / filteredAverages.length
+}
+
+function getStudentsAverage( studentList:Student[] ): number {
+    let filteredAverages = studentList
+        .map(getStudentAverage)
+        .filter( n => n!==0) // remove every student with no grades or undefined grades only
+    return filteredAverages
+        .reduce( (n1,n2) => n1+n2, 0 )
+        / filteredAverages.length
+}
+
 function courseToString( course:Course ): string {
     return course.name+": "+course.grades.map( n => n===undefined ? "*" : n ).join(",")
 }
@@ -53,3 +94,15 @@ function printStudents( students:Student[] ): void {
 }
 
 printStudents(studentList)
+
+console.log("Average over all: "+getStudentsAverage(studentList))
+studentList.forEach( student => {
+    console.log(
+        "Average of "+student.name+" "+student.lastName+": "+getStudentAverage(student)+"\r\n"+
+        student.certificate
+            .map( couse => {
+                return "   Average of course \""+couse.name+"\": "+getCourseAverage(couse)
+            } )
+            .join("\r\n")
+    )
+})
