@@ -46,7 +46,7 @@ function getGradeValue( grade:Grade ): number {
         case "E": return 5;
         case "F": return 6;
     }
-    return 100;
+    return 0;
 }
 
 function getCourseAverage( course:Course ): number {
