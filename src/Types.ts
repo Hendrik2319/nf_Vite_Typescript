@@ -46,12 +46,14 @@ function getGradeValue( grade:Grade ): number {
         case "E": return 5;
         case "F": return 6;
     }
-    return 0;
+    return 100;
 }
 
 function getCourseAverage( course:Course ): number {
     let filteredGrades = course.grades
         .filter(n => n !== undefined) // remove undefined grades
+    if (filteredGrades.length===0)
+        return 0;
     return filteredGrades
         .map( getGradeValue )
         .reduce( (n1,n2) => n1+n2, 0 )
@@ -62,6 +64,8 @@ function getStudentAverage( student:Student ): number {
     let filteredAverages = student.certificate
         .map(getCourseAverage)
         .filter( n => n!==0) // remove every course with no grades or undefined grades only
+    if (filteredAverages.length===0)
+        return 0;
     return filteredAverages
         .reduce( (n1,n2) => n1+n2, 0 )
         / filteredAverages.length
@@ -71,6 +75,8 @@ function getStudentsAverage( studentList:Student[] ): number {
     let filteredAverages = studentList
         .map(getStudentAverage)
         .filter( n => n!==0) // remove every student with no grades or undefined grades only
+    if (filteredAverages.length===0)
+        return 0;
     return filteredAverages
         .reduce( (n1,n2) => n1+n2, 0 )
         / filteredAverages.length
