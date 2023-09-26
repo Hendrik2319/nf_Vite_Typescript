@@ -1,10 +1,5 @@
-// In dieser Aufgabenstellung geht es darum, den Typ "Student" in TypeScript zu definieren.
-// Jeder Student soll über einen Vornamen, Nachnamen, Alter und eine Eigenschaft "Zeugnis" verfügen,
-// die eine Liste von Noten enthält. In diesem ersten Schritt soll eine Note eine Ganzzahl von 1 bis 6 sein.
-// Wählt geeignete englische Bezeichner für die Attribute.
-// Anschließend soll ein Student erstellt und in der Konsole ausgegeben werden.
 
-type Grade = 1 | 2 | 3 | 4 | 5 | 6
+type Grade = 1 | 2 | 3 | 4 | 5 | 6 | "A" | "B" | "C" | "D" | "E" | "F"
 
 type Student = {
     name: string
@@ -14,10 +9,10 @@ type Student = {
 }
 
 let student1: Student = {
-    name: "Name1",
-    lastName: "LastName1",
-    age: 24,
-    certificate: [ 1, 2, 2, 1, 6 ]
+    name: "Anton",
+    lastName: "Meier",
+    age: 17,
+    certificate: [ "A",2,"F",3,1,"B",2,5 ]
 }
 
 function printStudent( student:Student ): void {
